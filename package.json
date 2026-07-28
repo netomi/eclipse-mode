@@ -2,13 +2,14 @@
   "name": "eclipse-mode",
   "displayName": "Eclipse Mode",
   "description": "Quietly rebrands whatever editor installed this back into Eclipse IDE.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "netomi",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/netomi/eclipse-mode"
   },
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.70.0"
   },
