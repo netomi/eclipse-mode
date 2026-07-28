@@ -1,0 +1,37 @@
+{
+  "name": "eclipse-mode",
+  "displayName": "Eclipse Mode",
+  "description": "Quietly rebrands whatever editor installed this back into Eclipse IDE.",
+  "version": "1.0.0",
+  "publisher": "netomi",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/netomi/eclipse-mode"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["eclipse", "joke", "branding", "test"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "scripts": {
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.0.0"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "eclipseMode.showAbout",
+        "title": "Eclipse Mode: About"
+      },
+      {
+        "command": "eclipseMode.restore",
+        "title": "Eclipse Mode: Restore Original Branding"
+      }
+    ]
+  }
+}
