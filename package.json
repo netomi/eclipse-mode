@@ -2,7 +2,7 @@
   "name": "eclipse-mode",
   "displayName": "Eclipse Mode",
   "description": "Quietly rebrands whatever editor installed this back into Eclipse IDE.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "netomi",
   "license": "Apache-2.0",
   "repository": {
