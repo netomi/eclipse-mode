@@ -25,4 +25,4 @@ jobs:
         run: npx vsce package --no-dependencies
 
       - name: Publish to Open VSX Staging
-        run: npx ovsx-test publish *.vsix --registryUrl https://staging.open-vsx.org --trusted-publishing
+        run: npx ovsx-test@1.2.0-dev.0 publish *.vsix --registryUrl https://staging.open-vsx.org --trusted-publishing
