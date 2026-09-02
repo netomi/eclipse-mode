@@ -12,7 +12,7 @@ env:
   # OIDC identity once per extension and shares the token across every package it publishes, which
   # is the thing under test.
   TARGET_PLATFORMS: linux-x64 linux-arm64 darwin-x64 darwin-arm64 win32-x64
-  OVSX_VERSION: 1.2.0-dev.0
+  OVSX_VERSION: 1.2.0-dev.1
   REGISTRY_URL: https://staging.open-vsx.org
 
 jobs:
