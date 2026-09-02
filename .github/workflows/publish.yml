@@ -3,6 +3,17 @@ name: Publish to Open VSX (Staging)
 on:
   release:
     types: [published]
+  # so a multi-target publish can be exercised without cutting a release; the version in
+  # package.json still has to be one that is not published for these targets yet
+  workflow_dispatch:
+
+env:
+  # Packaged and published one at a time, but in a single ovsx invocation: the CLI exchanges the
+  # OIDC identity once per extension and shares the token across every package it publishes, which
+  # is the thing under test.
+  TARGET_PLATFORMS: linux-x64 linux-arm64 darwin-x64 darwin-arm64 win32-x64
+  OVSX_VERSION: 1.2.0-dev.0
+  REGISTRY_URL: https://staging.open-vsx.org
 
 jobs:
   publish:
@@ -21,8 +32,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Package extension
-        run: npx vsce package --no-dependencies
+      - name: Package extension for every target platform
+        run: |
+          for target in $TARGET_PLATFORMS; do
+            npx vsce package --no-dependencies --target "$target" --out "eclipse-mode-$target.vsix"
+          done
+          ls -l ./*.vsix
 
+      # One invocation, so every package shares the single token the exchange issues. Publishing them
+      # in separate invocations would exchange the identity once per target and prove nothing.
       - name: Publish to Open VSX Staging
-        run: npx ovsx-test@1.2.0-dev.0 publish *.vsix --registryUrl https://staging.open-vsx.org --trusted-publishing
+        run: |
+          npx ovsx-test@$OVSX_VERSION publish \
+            --packagePath ./*.vsix \
+            --registryUrl $REGISTRY_URL \
+            --trusted-publishing
